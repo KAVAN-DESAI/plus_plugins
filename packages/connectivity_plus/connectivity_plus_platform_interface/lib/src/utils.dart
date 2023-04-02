@@ -2,21 +2,14 @@ import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_
 
 /// Convert a String to a ConnectivityResult value.
 ConnectivityResult parseConnectivityResult(String state) {
-  switch (state) {
-    case 'bluetooth':
-      return ConnectivityResult.bluetooth;
-    case 'wifi':
-      return ConnectivityResult.wifi;
-    case 'ethernet':
-      return ConnectivityResult.ethernet;
-    case 'mobile':
-      return ConnectivityResult.mobile;
-    case 'vpn':
-      return ConnectivityResult.vpn;
-    case 'other':
-      return ConnectivityResult.other;
-    case 'none':
-    default:
-      return ConnectivityResult.none;
-  }
+  return switch (state) {
+    "bluetooth" => ConnectivityResult.bluetooth,
+    'wifi' => ConnectivityResult.wifi,
+    'ethernet' => ConnectivityResult.ethernet,
+    'mobile' => ConnectivityResult.mobile,
+    'vpn' => ConnectivityResult.vpn,
+    'other' => ConnectivityResult.other,
+    'none' => ConnectivityResult.none,
+    _ => ConnectivityResult.none
+  };
 }

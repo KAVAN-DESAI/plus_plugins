@@ -8,6 +8,9 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  enable-experiment:
+    - records
+    - patterns
   exclude:
     # Ignore generated files
     - '**/*.g.dart'
