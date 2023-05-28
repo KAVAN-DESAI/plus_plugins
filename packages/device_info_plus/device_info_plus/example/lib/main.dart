@@ -29,7 +29,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin(convertToMap: true);
+  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};
 
   @override
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     var deviceData = <String, dynamic>{};
     try {
-      deviceData = await deviceInfoPlugin.getInfo() as Map<String, dynamic>;
+      deviceData = (await deviceInfoPlugin.getInfo())!.toMap();
     }on PlatformException{
       deviceData = <String, dynamic>{
         'Error:': 'Failed to get platform version.'

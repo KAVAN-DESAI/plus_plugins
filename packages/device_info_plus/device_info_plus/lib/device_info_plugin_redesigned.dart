@@ -13,14 +13,14 @@ sealed class Device {
 }
 
 class Android implements Device {
-  Future<AndroidDeviceInfo> getInfo(dynamic platform, bool convertToMap)async{
+  Future<dynamic> getInfo(dynamic platform, bool convertToMap)async{
     final AndroidInfo androidInfo = AndroidInfo(platform: platform);
     return await androidInfo.info;
   }
 }
 
 class IOS implements Device {
-  Future<IosDeviceInfo> getInfo(dynamic platform, bool convertToMap) async{
+  Future<dynamic> getInfo(dynamic platform, bool convertToMap) async{
     final IosInfo isoInfo = IosInfo(platform: platform);
     return await isoInfo.info;
   }
@@ -44,7 +44,7 @@ class Windows implements Device{
 
 }
 
-class DeviceInfoPlugin extends AppApi{
+class DeviceInfoPlugin extends DeviceInfoApi{
   Device? device;
   bool convertToMap;
 
@@ -57,12 +57,12 @@ class DeviceInfoPlugin extends AppApi{
   }
 
   @override
-  Future<dynamic> getInfo() async {
+  Future<BaseDeviceInfo?> getInfo() async {
     switch (device!) {
       case Android():
         return await Android().getInfo(_platform, convertToMap);
       case IOS():
-        return IOS().getInfo(_platform, convertToMap);
+        return await IOS().getInfo(_platform, convertToMap);
       case Linux():
         return await Linux().getInfo(_platform, convertToMap);
       case Web():
