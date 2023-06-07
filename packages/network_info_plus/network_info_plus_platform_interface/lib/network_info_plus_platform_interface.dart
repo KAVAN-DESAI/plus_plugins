@@ -43,6 +43,10 @@ abstract class NetworkInfoPlatform extends PlatformInterface {
     throw UnimplementedError('getWifiName() has not been implemented.');
   }
 
+  Future<dynamic> getWifiFrequency() {
+    throw UnimplementedError('getWifiFrequency() has not been implemented.');
+  }
+
   /// Obtains the wifi BSSID of the connected network.
   Future<String?> getWifiBSSID() {
     throw UnimplementedError('getWifiBSSID() has not been implemented.');

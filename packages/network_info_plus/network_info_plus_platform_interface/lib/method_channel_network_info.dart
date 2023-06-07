@@ -29,6 +29,11 @@ class MethodChannelNetworkInfo extends NetworkInfoPlatform {
   }
 
   @override
+  Future<dynamic> getWifiFrequency() async {
+    return await methodChannel.invokeMethod<dynamic>('wifiFrequency');
+  }
+
+  @override
   Future<String?> getWifiBSSID() {
     return methodChannel.invokeMethod<String>('wifiBSSID');
   }
