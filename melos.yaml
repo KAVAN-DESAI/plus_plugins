@@ -1,14 +1,22 @@
 # Name of this workspace, this is used for display purpose on the CLI
 # and on your IDEs.
 name: plus_plugins
-
-versioning:
-  # Versioning mode, currently only independent supported.
-  mode: independent
+repository: https://github.com/fluttercommunity/plus_plugins
 
 # Array of globs to search for packages.
+# Instead of one recursive glob, we use multiple globs to avoid
+# searching every single directory in the repo.
 packages:
-  - packages/**
+  - packages/*
+  - packages/*/*
+  - packages/*/*/*
+
+command:
+  version:
+    # Generate commit links in package changelogs.
+    linkToCommits: true
+    # Skip generation of shared changelogs file in the repo root
+    workspaceChangelog: false
 
 scripts:
   lint:all:
@@ -241,10 +249,3 @@ scripts:
   # Additional cleanup lifecycle script, executed when `melos clean` is ran.
   postclean: >
     melos exec -c 6 -- "flutter clean"
-
-dev_dependencies:
-  flutter_lints: 2.0.1
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.5"
