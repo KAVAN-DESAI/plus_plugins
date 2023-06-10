@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import 'package:network_info_plus_platform_interface/network_info_plus_platform_interface.dart';
 import 'package:nm/nm.dart';
+import 'dart:convert';
 
 // Used internally
 // ignore_for_file: public_member_api_docs
@@ -14,6 +15,8 @@ typedef _ConnectionGetter = Future<String?> Function(
 
 @visibleForTesting
 typedef NetworkManagerClientFactory = NetworkManagerClient Function();
+
+typedef NetworkManagerAccessPointFactory = NetworkManagerAccessPoint Function();
 
 /// The Linux implementation of NetworkInfoPlatform.
 class NetworkInfoPlusLinuxPlugin extends NetworkInfoPlatform {
@@ -26,6 +29,22 @@ class NetworkInfoPlusLinuxPlugin extends NetworkInfoPlatform {
   @override
   Future<String?> getWifiName() {
     return _getConnectionValue((connection) async => connection?.id);
+  }
+
+  /// Obtains the wifi Frequency of the connected wifi network
+  @override
+  Future<dynamic> getWifiFrequency() {
+    return _getConnectionValue((connection) async {
+      final device = connection?.devices
+          .firstWhere((d) => d.deviceType == NetworkManagerDeviceType.wifi);
+      var wireless = device!.wireless!;
+      var accessPoints = wireless.accessPoints.where((a) => a.ssid.isNotEmpty).toList();
+      var frequencyList=[];
+      for (var accessPoint in accessPoints) {
+        frequencyList.add(accessPoint.frequency);
+      }
+      return frequencyList.toString();
+    });
   }
 
   /// Obtains the IP v4 address of the connected wifi network

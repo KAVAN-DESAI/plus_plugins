@@ -33,6 +33,7 @@ class NetworkInfoPlusPlugin : FlutterPlugin {
         }
 
         val networkInfo = NetworkInfo(wifiManager, connectivityManager)
+        print("daaam here")
         val methodChannelHandler = NetworkInfoMethodChannelHandler(networkInfo)
         methodChannel.setMethodCallHandler(methodChannelHandler)
     }

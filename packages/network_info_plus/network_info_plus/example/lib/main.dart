@@ -94,6 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
         wifiBroadcast,
         wifiSubmask;
 
+    var wifiFrequency;
+
     try {
       if (!kIsWeb && Platform.isIOS) {
         // ignore: deprecated_member_use
@@ -140,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     try {
       wifiIPv4 = await _networkInfo.getWifiIP();
+      wifiFrequency = await _networkInfo.getWifiFrequency();
     } on PlatformException catch (e) {
       developer.log('Failed to get Wifi IPv4', error: e);
       wifiIPv4 = 'Failed to get Wifi IPv4';
@@ -183,6 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {
       _connectionStatus = 'Wifi Name: $wifiName\n'
+          'Wifi Frequenyc: ${wifiFrequency.toString()}\n'
           'Wifi BSSID: $wifiBSSID\n'
           'Wifi IPv4: $wifiIPv4\n'
           'Wifi IPv6: $wifiIPv6\n'

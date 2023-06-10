@@ -47,6 +47,10 @@ class NetworkInfo {
     return _platform.getWifiName();
   }
 
+  Future<dynamic> getWifiFrequency() {
+    return _platform.getWifiFrequency();
+  }
+
   /// Obtains the wifi BSSID of the connected network.
   ///
   /// Please note that it DOESN'T WORK on emulators (returns null).

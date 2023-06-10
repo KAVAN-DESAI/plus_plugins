@@ -21,6 +21,8 @@ internal class NetworkInfo(private val wifiManager: WifiManager,
 
     fun getWifiBSSID(): String? = wifiInfo.bssid
 
+    fun getWifiFrequency(): Int? = wifiInfo.frequency
+
     fun getWifiIPAddress(): String? {
         var ipAddress: String? = null
 
