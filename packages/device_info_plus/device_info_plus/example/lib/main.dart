@@ -8,7 +8,7 @@ import 'dart:async';
 import 'dart:developer' as developer;
 import 'dart:io';
 
-import 'package:device_info_plus/device_info_plugin_redesigned.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     var deviceData = <String, dynamic>{};
     try {
-      deviceData = (await deviceInfoPlugin.getInfo())!.toMap();
+      deviceData = (await deviceInfoPlugin.getInfo())!.data;
     }on PlatformException{
       deviceData = <String, dynamic>{
         'Error:': 'Failed to get platform version.'

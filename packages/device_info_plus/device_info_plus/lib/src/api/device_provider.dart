@@ -1,4 +1,4 @@
-import 'package:device_info_plus/device_info_plugin_redesigned.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:io';
 
@@ -17,6 +17,9 @@ class DeviceProvider {
         return MacOS();
       } else if (Platform.isWindows) {
         return Windows();
+      }
+      else{
+        return null;
       }
     }
   }
