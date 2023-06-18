@@ -103,6 +103,22 @@
   return addr;
 }
 
+- (NSString *)getWifiFrequency {
+    NSString *frequency = @"Unknown";
+
+    if (@available(iOS 14.0, *)) {
+        NSArray<NEHotspotNetwork *> *hotspots = [NEHotspotHelper supportedNetworkInterfaces];
+        for (NEHotspotNetwork *hotspot in hotspots) {
+            if ([hotspot.ssid isEqualToString:self.networkInfoProvider.SSID]) {
+                frequency = [NSString stringWithFormat:@"%f", hotspot.channel.centerFrequency];
+                break;
+            }
+        }
+    }
+
+    return frequency;
+}
+
 - (NSString *)convertCLAuthorizationStatusToString:
     (CLAuthorizationStatus)status {
   switch (status) {
@@ -164,6 +180,8 @@
                             result([weakSelf
                                 convertCLAuthorizationStatusToString:status]);
                           }];
+  } else if ([call.method isEqualToString:@"wifiFrequency"]) {
+    result([self getWifiFrequency]);
   } else {
     result(FlutterMethodNotImplemented);
   }
