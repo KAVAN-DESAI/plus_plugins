@@ -26,4 +26,10 @@ class NetworkInfoPlusWebPlugin extends NetworkInfoPlatform {
   Future<String?> getWifiIP() {
     throw UnsupportedError('getWifiIP() is not supported on Web.');
   }
+
+  /// Obtains the IP address of the connected wifi network
+  @override
+  Future<String?> getWifiFrequency() {
+    throw UnsupportedError('getWifiFrequency() is not supported on Web.');
+  }
 }

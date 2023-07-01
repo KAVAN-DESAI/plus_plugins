@@ -7,7 +7,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  network_info_plus: ^4.0.1
+  network_info_plus:
+    path: ../../network_info_plus
 
 dev_dependencies:
   flutter_test:

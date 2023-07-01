@@ -15,6 +15,7 @@ const String kWifiIpV6 = '2002:7f00:0001:0:0:0:0:0';
 const String kWifiBroadcast = '127.0.0.255';
 const String kWifiGatewayIP = '127.0.0.0';
 const String kWifiSubmask = '255.255.255.0';
+const String kWifiFrequencyResult = '2447';
 const LocationAuthorizationStatus kRequestLocationResult =
     LocationAuthorizationStatus.authorizedAlways;
 const LocationAuthorizationStatus kGetLocationResult =
@@ -63,6 +64,11 @@ void main() {
     test('getWifiGatewayIP', () async {
       final result = await networkInfo.getWifiGatewayIP();
       expect(result, kWifiGatewayIP);
+    });
+
+    test('getWifiFrequency', () async {
+      final result = await networkInfo.getWifiFrequency();
+      expect(result, kWifiFrequencyResult);
     });
 
     test('requestLocationServiceAuthorization', () async {
@@ -115,6 +121,11 @@ class MockNetworkInfoPlatform extends Mock
   @override
   Future<String> getWifiIP() async {
     return kWifiIpAddressResult;
+  }
+
+  @override
+  Future<dynamic> getWifiFrequency() async {
+    return kWifiFrequencyResult;
   }
 
   @override

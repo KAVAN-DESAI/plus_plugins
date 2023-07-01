@@ -7,6 +7,7 @@ import 'package:network_info_plus_platform_interface/network_info_plus_platform_
 
 void main() {
   test('registered instance', () {
+    print("testing in windows!!!!!!!!!!!!!");
     NetworkInfoPlusWindowsPlugin.registerWith();
     expect(NetworkInfoPlatform.instance, isA<NetworkInfoPlusWindowsPlugin>());
   });
@@ -21,6 +22,12 @@ void main() {
     final plugin = NetworkInfoPlusWindowsPlugin();
     final wifiName = await plugin.getWifiName();
     expect(wifiName, isNotEmpty);
+  });
+
+  test('Wifi Frequency', () async {
+    final plugin = NetworkInfoPlusWindowsPlugin();
+    final wifiFrequency = await plugin.getWifiFrequency();
+    expect(wifiFrequency, isNotEmpty);
   });
 
   test('IP Address', () async {
