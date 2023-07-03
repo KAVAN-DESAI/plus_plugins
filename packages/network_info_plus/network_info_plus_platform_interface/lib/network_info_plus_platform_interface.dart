@@ -43,7 +43,7 @@ abstract class NetworkInfoPlatform extends PlatformInterface {
     throw UnimplementedError('getWifiName() has not been implemented.');
   }
 
-  Future<dynamic> getWifiFrequency() {
+  Future<String?> getWifiFrequency() {
     throw UnimplementedError('getWifiFrequency() has not been implemented.');
   }
 

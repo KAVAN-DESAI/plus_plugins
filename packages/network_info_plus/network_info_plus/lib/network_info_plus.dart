@@ -49,8 +49,8 @@ class NetworkInfo {
     return _platform.getWifiName();
   }
 
-  Future<dynamic> getWifiFrequency() {
-    return _platform.getWifiFrequency();
+  Future<String?> getWifiFrequency() async{
+    return await _platform.getWifiFrequency();
   }
 
   /// Obtains the wifi BSSID of the connected network.

@@ -37,6 +37,8 @@ void main() {
               return '127.0.0.0';
             case 'wifiSubmask':
               return '255.255.255.0';
+            case 'wifiFrequency':
+              return '2447';
             case 'requestLocationServiceAuthorization':
               return 'authorizedAlways';
             case 'getLocationServiceAuthorization':
@@ -57,6 +59,22 @@ void main() {
         <Matcher>[
           isMethodCall(
             'wifiName',
+            arguments: null,
+          ),
+        ],
+      );
+    });
+
+    test('getWifiFrequency', () async {
+      final result = await methodChannelNetworkInfo.getWifiFrequency();
+      print(result);
+      print("result not found");
+      expect(result, '2447');
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall(
+            'wifiFrequency',
             arguments: null,
           ),
         ],
