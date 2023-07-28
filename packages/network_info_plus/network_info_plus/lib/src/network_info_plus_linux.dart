@@ -33,7 +33,7 @@ class NetworkInfoPlusLinuxPlugin extends NetworkInfoPlatform {
 
   /// Obtains the wifi Frequency of the connected wifi network
   @override
-  Future<dynamic> getWifiFrequency() {
+  Future<String?> getWifiFrequency() {
     return _getConnectionValue((connection) async {
       final device = connection?.devices
           .firstWhere((d) => d.deviceType == NetworkManagerDeviceType.wifi);
@@ -43,7 +43,7 @@ class NetworkInfoPlusLinuxPlugin extends NetworkInfoPlatform {
       for (var accessPoint in accessPoints) {
         frequencyList.add(accessPoint.frequency);
       }
-      return frequencyList.toString();
+      return frequencyList[0].toString();
     });
   }
 

@@ -124,7 +124,7 @@ class MockNetworkInfoPlatform extends Mock
   }
 
   @override
-  Future<dynamic> getWifiFrequency() async {
+  Future<String?> getWifiFrequency() async {
     return kWifiFrequencyResult;
   }
 

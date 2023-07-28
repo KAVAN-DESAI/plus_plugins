@@ -49,7 +49,7 @@ class NetworkInfo {
     return _platform.getWifiName();
   }
 
-  Future<String?> getWifiFrequency() async{
+  Future<dynamic> getWifiFrequency() async{
     return await _platform.getWifiFrequency();
   }
 

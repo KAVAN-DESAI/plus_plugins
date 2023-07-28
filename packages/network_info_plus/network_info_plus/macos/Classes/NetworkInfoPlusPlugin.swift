@@ -65,6 +65,21 @@ public class NetworkInfoPlusPlugin: NSObject, FlutterPlugin {
     return withWifiInterface(family: AF_INET) { descriptionForAddress($0.pointee.ifa_dstaddr) }
   }
 
+  public func getWifiFrequency() -> Int? {
+      if let interface = CWWiFiClient.shared().interface(), let ssid = interface.ssid() {
+          if let network = interface.interface(withSSID: ssid), let channel = network.wlanChannel() {
+              // The channel number is used to determine the Wi-Fi frequency.
+              // 2.4GHz Wi-Fi channels range from 1 to 14.
+              // 5GHz Wi-Fi channels use a more complex mapping to frequency.
+              // This function returns the frequency in MHz for 5GHz channels.
+              // Note: Some channels might not have a corresponding frequency value.
+              return channel.channelNumberFrequency()
+          }
+      }
+      return nil
+  }
+
+
   public func getDefaultGateway() -> String? {
     var mib : [Int32] = [CTL_NET, PF_ROUTE, 0, AF_INET, NET_RT_FLAGS, RTF_GATEWAY];
     var l : Int = 0
