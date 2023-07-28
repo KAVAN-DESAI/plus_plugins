@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 _battery.batteryLevel.then(
-                  (batteryLevel) {
+                      (batteryLevel) {
                     showDialog<void>(
                       context: context,
                       builder: (_) => AlertDialog(
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 _battery.isInBatterySaveMode.then(
-                  (isInPowerSaveMode) {
+                      (isInPowerSaveMode) {
                     showDialog<void>(
                       context: context,
                       builder: (_) => AlertDialog(

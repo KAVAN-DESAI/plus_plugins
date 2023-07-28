@@ -9,8 +9,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: dev.fluttercommunity.plus.battery
-        pluginClass: BatteryPlusPlugin
+        dartPluginClass: BatteryPlusAndroidPlugin
+        ffiPlugin: true
       ios:
         pluginClass: FLTBatteryPlusPlugin
       linux:
@@ -28,9 +28,11 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  battery_plus_platform_interface: ^1.2.2
+  battery_plus_platform_interface:
+    path: ../battery_plus_platform_interface
   meta: ^1.8.0
   upower: ^0.7.0
+  jni:
 
 dev_dependencies:
   flutter_test:
@@ -39,7 +41,8 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   mockito: ^5.4.0
   plugin_platform_interface: ^2.1.4
+  jnigen:
 
 environment:
-  sdk: ">=2.18.0 <4.0.0"
+  sdk: '>=3.0.0-397.0.dev <4.0.0'
   flutter: ">=3.3.0"
